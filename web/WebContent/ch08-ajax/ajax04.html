@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax 테스트 - JSON타입</title>
+</head>
+<body>
+<script type="text/javascript">
+	
+	window.onload = function(){
+		
+		/* XMLHttpRequest 객체 생성 */
+		let xhr = new XMLHttpRequest();
+		
+		/* json 파일 오픈 */
+		xhr.open("GET","content/sample.json",true);
+		
+		/* 객체가 준비 상태일때 메서드 실행 */
+		xhr.onreadystatechange = function(){
+			
+			/* 연결상태 코드가 200으로 정상일때 */
+			if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+				/* json파일을 json타입으로 파싱 */
+				let str = xhr.responseText;
+				let result = JSON.parse(str);
+				let output = "";
+				/* json파일에 데이터를 전부 불러온다. */
+				for(let i in result){
+					output += "<h3>" + result[i] + "</h3>";
+				}
+				document.body.innerHTML += output;
+			}
+		};	
+		xhr.send();
+	}
+</script>
+<h2>onreadystatechange 속성 사용 - JSON 응답</h2>
+<hr>
+</body>
+</html>

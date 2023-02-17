@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX테스트</title>
+</head>
+<body>
+<h1>NON-AJAX 통신 테스트</h1>
+<a href="content/sample.jsp">하이퍼링크로 요청</a>
+<br><br>
+<a href="content/sample.jsp"><img src="../images/duke.png" width="100"></a>
+<br><br>
+<button onclick="location.href='content/sample.jsp'">버튼을클릭하여요청</button>
+<hr>
+<h1>Ajax 통신 테스트</h1>
+<button onclick="xhruestAjax();">버튼을 클릭하여 요청(Ajax사용)</button>
+<div id="result" style="marhin-top:5px"></div>
+
+	<!-- Ajax연결 -->
+<script type="text/javascript">
+	function xhruestAjax(){
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			let result = document.getElementById("result");
+			if(xhr.status == 200 && xhr.readyState == XMLHttpRequest.DONE)
+				result.innerHTML = xhr.responseText;
+		};
+		xhr.open("GET","content/sample.jsp",true);
+		xhr.send();
+	}
+</script>
+</body>
+</html>

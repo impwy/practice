@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax테스트</title>
+</head>
+<body>
+	<script>
+		window.onload = function() {
+			let xhr = new XMLHttpRequest();
+			
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == XMLHttpRequest.DONE) {
+					if (xhr.status == 200) {
+						let xml = xhr.responseXML;
+						let rootE = xml.getElementsByTagName("testxml");
+						let output = '';
+
+						for (let i = 1; i < rootE[0].childNodes.length; i += 2) {
+							output += "<h3>"
+									+ rootE[0].childNodes[i].firstChild.nodeValue
+									+ "</h3>"; 
+									}
+							document.body.innerHTML += output;
+						
+					}
+				}
+			};
+			
+			xhr.open("GET","content/sample.xml",true);
+			xhr.send();
+		}
+	</script>
+	<h2>onreadystatechange 속성 사용 - XML응답</h2>
+	<hr />
+</body>
+</html>

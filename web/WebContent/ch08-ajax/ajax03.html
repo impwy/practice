@@ -1,0 +1,28 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax테스트</title>
+</head>
+<body>
+<script type="text/javascript">
+	window.onload = function(){
+		let xhr = new XMLHttpRequest();
+		xhr.onload= function(){
+			if(xhr.status == 200){
+				let xml = xhr.responseXML;
+				let rootE = xml.getElementsByTagName('testxml');
+				let output = '';
+				for(let i =1; i< rootE[0].childNodes.length; i+= 2) /* node의 불필요한 공백을 제거하기 위해 홀수로 가져온다. */
+					output += "<h3>" + rootE[0].childNodes[i].firstChild.nodeValue+"</h3>";	
+				document.body.innerHTML += output;
+			}
+		};
+		xhr.open("GET","content/sample.xml",true);
+		xhr.send();
+	};
+</script>
+</body>
+</html>
+
