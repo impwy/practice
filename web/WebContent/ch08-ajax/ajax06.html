@@ -7,13 +7,13 @@
 window.addEventListener("load",function(){
 	document.getElementById("loginb").onclick = handleButtonPress;
 });
-var xhr;
-var id;
+let xhr;
+let id;
 
 function handleButtonPress(e){
 	e.preventDefault();
 	xhr = new XMLHttpRequest();
-	form = document.querySelector("#loginf");
+	let form = document.querySelector("#loginf");
 	id = document.querySelector("#id");
 	let passwd = document.querySelector("#passwd");
 	let queryString = "id=" + encodeURIComponent(id.value)+"&passwd="+passwd.value;

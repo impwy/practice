@@ -17,6 +17,11 @@ import javax.servlet.http.Part;
 @MultipartConfig(location = "C:/uploadtest", maxFileSize = 1024*1024 *5,maxRequestSize = 1024*1024*5*5)
 public class UploadServlet extends HttpServlet{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=utf-8");
@@ -38,8 +43,11 @@ public class UploadServlet extends HttpServlet{
 				}
 			}else {
 				String partName = part.getName();
+				String fieldValue = req.getParameter(partName);
+				out.print("<br>"+ partName+": " + fieldValue);
 			}
 		}
+		out.close();
 	}
 
 }

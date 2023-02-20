@@ -12,9 +12,6 @@
 		/* XMLHttpRequest 객체 생성 */
 		let xhr = new XMLHttpRequest();
 		
-		/* json 파일 오픈 */
-		xhr.open("GET","content/sample.json",true);
-		
 		/* 객체가 준비 상태일때 메서드 실행 */
 		xhr.onreadystatechange = function(){
 			
@@ -31,6 +28,8 @@
 				document.body.innerHTML += output;
 			}
 		};	
+		/* json 파일 오픈 */
+		xhr.open("GET","content/sample.json",true);
 		xhr.send();
 	}
 </script>

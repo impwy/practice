@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	label, input{
+		margin : 2px;
+	}
+</style>
+<script>
+	window.addEventListener("load",function(){
+		document.getElementById("submitb").onclick = handleButtonPress;
+	});
+	let xhr;
+	let form;
+	function handleButtonPress(e){
+		e.preventDefault();
+		xhr = new XMLHttpRequest();
+		form = document.querySelector("#inputForm");
+		let formData = new FormData(form);
+		xhr.onload = handleResponse;
+		xhr.open("POST","/web/upload",true);
+		xhr.send(formData);
+	}
+	function handleResponse(){
+		document.querySelector("output").innerHTML +=
+			"<hr>" + xhr.responseText;
+	}
+</script>
+</head>
+<body>
+<h1>Ajax로 입력 폼 전송 테스트</h1>
+<form id="inputForm" method="post">
+	<label for="theName">작성자</label><input type="text" name="theName" id="theName"><br>
+	<label for="theAge">나이</label><input type="text" name="theAge" id="theAge"><br>
+	<label for="theFile">파일</label><input type="file" name="theFile" id="theFile"><br>
+	<input type="submit" id="submitb" value="업로드">
+</form>
+<output></output>
+</body>
+</html>
