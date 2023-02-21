@@ -1,0 +1,22 @@
+@CHARSET "utf-8";
+
+body {
+	background-color: #CAE2F7;
+}
+
+table, tr, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.label {
+	background-color: #A5cff1;
+	width: 20%;
+}
+
+.label2 {
+	background-color: #a5cff1;
+	text-align: center;
+	width: 70%;
+	border-radius : 15px
+}
